@@ -1,7 +1,18 @@
 // server.js
 
-var express = require('express');
+/***** SETUP *****/
+// requires
+var express  = require('express');
+var mongoose = require('mongoose');
+var Nap      = require('./app/models/nap.js');
+
+// vars
+var mongoURI = process.env.MONGOLAB_URI || 'mongodb://localhost/napsapi';
+var port = Number(process.env.PORT || 8080);
+
+// create & setup app
 var app = express();
+mongoose.connect(mongoURI);
 
 /***** ROUTING *****/
 // Router
@@ -16,7 +27,6 @@ router.get('/', function(req, res) {
 app.use('/api', router);
 
 /***** SERVER *****/
-var port = Number(process.env.PORT || 8080);
 app.listen(port, function() {
   console.log("Listening on port " + port);
 });
