@@ -1,7 +1,9 @@
 // server.js
-//*****************************************************************************
-//* SETUP 
-//*****************************************************************************
+
+/*****************************************************************************/
+/* SETUP
+/*****************************************************************************/
+
 // requires
 var express    = require('express');
 var bodyParser = require('body-parser');
@@ -22,11 +24,39 @@ app.use(bodyParser.urlencoded({
 // connect to MongoDB
 mongoose.connect(mongoURI);
 
-//*****************************************************************************
-//* ROUTING
-//*****************************************************************************
-// Router
-var apiRouter = express.Router();
+/*****************************************************************************/
+/* ROUTING
+/*****************************************************************************/
+
+// Routers
+var mainRouter = express.Router();
+var apiRouter  = express.Router();
+
+/*******************/
+/*** Main Router ***/
+/*******************/
+
+// Log requests - Has to be placed before the corresponding routes or 
+// else doesn't get called
+mainRouter.use(function(req, res, next) {
+  console.log("Main Router request received: ", req.method, req.url, req.body);
+  // continue towards the route endpoint
+  next(); 
+});
+
+mainRouter.route('/').get(function(req, res) {
+  res.send("Hello! Nothing to see here, now move along.")
+});
+
+/******************/
+/*** API Router ***/
+/******************/
+
+apiRouter.use(function(req, res, next) {
+  console.log("API Router request received: ", req.method, req.url, req.body);
+  // continue towards the route endpoint
+  next(); 
+});
 
 // Naps CRUD routes
 apiRouter.route('/naps')
@@ -82,13 +112,19 @@ apiRouter.route('/naps/:nap_id')
     });
   });
 
-
-// Register apiRouter
+// Register routers
 app.use('/api', apiRouter);
+app.use('/', mainRouter);
 
-//*****************************************************************************
-//* SERVER 
-//*****************************************************************************
+// If no route has matched up until the end => 404
+app.use(function(req, res, next){
+    console.log("Unregistered request received: ", req.method, req.url, req.body);
+    res.status(404).send('Sorry, this page does not exist.');
+});
+/*****************************************************************************/
+/* SERVER 
+/*****************************************************************************/
+
 app.listen(port, function() {
   console.log("Listening on port " + port);
 });
