@@ -1,0 +1,18 @@
+{
+  "name": "napsapi",
+  "version": "0.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/gsprenger/napsapi"
+  },
+  "author": "Gabriel Sprenger",
+  "dependencies": {
+    "express": "^4.5.1",
+    "mongoose": "^3.8.12"
+  }
+}
