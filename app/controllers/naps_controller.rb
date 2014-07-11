@@ -1,5 +1,5 @@
 class NapsController < ApplicationController
-  protect_from_forgery with: :null_session
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
   before_action :set_nap, only: [:show, :edit, :update, :destroy]
 
   # GET /naps
@@ -70,6 +70,6 @@ class NapsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def nap_params
-      params.require(:nap).permit(:nap_type, :description, :coordinates)
+      params.permit(:nap_type, :description, :coordinates)
     end
 end
