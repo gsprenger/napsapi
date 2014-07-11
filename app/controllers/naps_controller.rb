@@ -70,6 +70,9 @@ class NapsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def nap_params
-      params.permit(:nap_type, :description, :coordinates)
+      respond_to do |format|
+        format.html { params.require(:nap).permit(:nap_type, :description, :coordinates) }
+        format.json { params.permit(:nap_type, :description, :coordinates) }
+      end
     end
 end
