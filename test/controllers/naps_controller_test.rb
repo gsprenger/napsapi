@@ -18,7 +18,7 @@ class NapsControllerTest < ActionController::TestCase
 
   test "should create nap" do
     assert_difference('Nap.count') do
-      post :create, nap: { coordinates: @nap.coordinates, description: @nap.description, type: @nap.type }
+      post :create, nap: { coordinates: @nap.coordinates, description: @nap.description, type: @nap.nap_type }
     end
 
     assert_redirected_to nap_path(assigns(:nap))
@@ -35,7 +35,7 @@ class NapsControllerTest < ActionController::TestCase
   end
 
   test "should update nap" do
-    patch :update, id: @nap, nap: { coordinates: @nap.coordinates, description: @nap.description, type: @nap.type }
+    patch :update, id: @nap, nap: { coordinates: @nap.coordinates, description: @nap.description, type: @nap.nap_type }
     assert_redirected_to nap_path(assigns(:nap))
   end
 
