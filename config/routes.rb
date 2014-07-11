@@ -1,3 +1,5 @@
 Napsapi::Application.routes.draw do
-  resources :naps
+  scope 'api' do
+    resources :naps
+  end
 end
