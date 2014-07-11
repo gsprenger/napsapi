@@ -1,0 +1,31 @@
+<h1>Listing naps</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Coordinates</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @naps.each do |nap| %>
+      <tr>
+        <td><%= nap.type %></td>
+        <td><%= nap.description %></td>
+        <td><%= nap.coordinates %></td>
+        <td><%= link_to 'Show', nap %></td>
+        <td><%= link_to 'Edit', edit_nap_path(nap) %></td>
+        <td><%= link_to 'Destroy', nap, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Nap', new_nap_path %>

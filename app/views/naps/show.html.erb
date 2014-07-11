@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @nap.type %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @nap.description %>
+</p>
+
+<p>
+  <strong>Coordinates:</strong>
+  <%= @nap.coordinates %>
+</p>
+
+<%= link_to 'Edit', edit_nap_path(@nap) %> |
+<%= link_to 'Back', naps_path %>
