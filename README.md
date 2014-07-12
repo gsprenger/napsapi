@@ -8,9 +8,11 @@ ToDo
 ------
 
 ### Backend
-- Authentication (with API key)
+- Authentication? (with API key)
+- Testing?
 
 ### Frontend
 - Everything :)
 -- Set up framework: Marionette
 -- CRUD Naps GUI
+-- Testing?
