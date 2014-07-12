@@ -3,5 +3,5 @@ Napsapi::Application.routes.draw do
     resources :naps
   end
 
-  root "naps#index"
+  root "application#index"
 end
